@@ -7,6 +7,7 @@
     yum:
       name: httpd
       state: present
+    become: yes
 
   - name: Ensure latest index.html file is present
     copy:
@@ -17,9 +18,11 @@
     service:
       name: httpd
       state: started
+    become: yes
 
   - name: Enable access to port 80
     firewalld:
       service: http
       permanent: true
       state: enabled
+    become: yes
